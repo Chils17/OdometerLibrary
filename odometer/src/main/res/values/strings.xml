@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Odometer</string>
+    <string name="lato_black">Lato-Black.ttf</string>
+    <string name="lato_blackitalic">Lato-BlackItalic.ttf</string>
+    <string name="lato_bold">Lato-Bold.ttf</string>
+    <string name="lato_hairline">Lato-Hairline.ttf</string>
+    <string name="lato_light">Lato-Light.ttf</string>
+    <string name="lato_regular">Lato-Regular.ttf</string>
+</resources>

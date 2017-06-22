@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:chils="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
+
+    <com.androidchils.odometer.Odometer
+        android:id="@+id/odometer"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        chils:np_background="@color/color_transparent"
+        chils:np_backgroundColor="@drawable/gradient"
+        chils:np_font="@string/lato_regular"
+        chils:np_reading="0000"
+        chils:np_slots="4"
+        chils:np_textColor="@color/white"
+        chils:np_textSize="18sp" />
+
+    <com.androidchils.odometer.Odometer
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        chils:np_background="@color/color_transparent"
+        chils:np_backgroundColor="@android:color/holo_red_dark"
+        chils:np_font="@string/lato_regular"
+        chils:np_reading="00000"
+        chils:np_slots="5"
+        chils:np_textColor="@color/white"
+        chils:np_textSize="17sp" />
+
+    <com.androidchils.odometer.Odometer
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        chils:np_background="@color/color_transparent"
+        chils:np_backgroundColor="@android:color/darker_gray"
+        chils:np_font="@string/lato_black"
+        chils:np_reading="000"
+        chils:np_slots="3"
+        chils:np_textColor="@color/colorPrimary"
+        chils:np_textSize="16sp" />
+
+    <com.androidchils.odometer.Odometer
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        chils:np_background="@color/color_transparent"
+        chils:np_backgroundColor="@android:color/holo_blue_light"
+        chils:np_font="@string/lato_regular"
+        chils:np_reading="00"
+        chils:np_slots="2"
+        chils:np_textColor="@color/white"
+        chils:np_textSize="19sp" />
+
+    <TextView
+        android:id="@+id/tvOutPut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        android:visibility="gone"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>
