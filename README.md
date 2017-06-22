@@ -4,13 +4,13 @@ This is an Android Library for making Odometer with little customization with re
 Example is available in app module.
 
 <p>
-<img src="https://github.com/droidbyme/DroidDialog/blob/master/app/src/main/assets/device-2017-04-12-193622.png" alt="screenshot" width="270">
+<img src="https://raw.githubusercontent.com/Chils17/OdometerLibrary/master/app/src/main/assets/screenshot%201.png" width="270">
 
 <!-- [![Alt text for your video](https://img.youtube.com/vi/T-D1KVIuvjA/0.jpg)](http://www.youtube.com/watch?v=T-D1KVIuvjA) -->
 
-<img src="https://github.com/droidbyme/DroidDialog/blob/master/app/src/main/assets/device-2017-04-12-193442.png" alt="screenshot" width="270">
+<img src="https://raw.githubusercontent.com/Chils17/OdometerLibrary/master/app/src/main/assets/Screenshot%202.png" alt="screenshot" width="270">
 
-<img src="https://github.com/droidbyme/DroidDialog/blob/master/app/src/main/assets/device-2017-04-12-195446.png" alt="screenshot" width="270">
+<img src="https://raw.githubusercontent.com/Chils17/OdometerLibrary/master/app/src/main/assets/Screenshot%203.png" alt="screenshot" width="270">
 
 </p>
 
