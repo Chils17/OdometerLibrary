@@ -17,6 +17,7 @@ Example is available in app module.
 
 ## Download
 
+<!-- 
 ### Gradle dependency:
 - Add the following to your project level build.gradle:
 ~~~
@@ -39,6 +40,7 @@ dependencies {
 <img src="https://github.com/vatsaldesai92/MyDynamicCalendarLibrary/blob/master/app/src/main/assets/google_play_icon.png" alt="screenshot" width="270">
 </a>
 </p> -->
+ -->
 
 ### Usage
 
