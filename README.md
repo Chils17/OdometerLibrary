@@ -15,9 +15,9 @@ Example is available in app module.
 </p>
 
 
+<!-- 
 ## Download
 
-<!-- 
 ### Gradle dependency:
 - Add the following to your project level build.gradle:
 ~~~
