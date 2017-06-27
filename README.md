@@ -93,7 +93,6 @@ dependencies {
 ### Odometer
 
 - You can even use the Odometer alone.<br>
-add xmlns:chils="http://schemas.android.com/apk/res-auto"
 ~~~
       <com.androidchils.odometer.Odometer
              android:id="@+id/odometer"
