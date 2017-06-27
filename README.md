@@ -15,7 +15,6 @@ Example is available in app module.
 </p>
 
 
-
 ## Download
 
 ### Gradle dependency:
