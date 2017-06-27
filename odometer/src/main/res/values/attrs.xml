@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="Odometer">
-
-        <attr name="np_background" format="color" />
         <attr name="np_textSize" format="dimension" />
         <attr name="np_font" format="string" />
-        <attr name="np_backgroundColor" format="reference|color|string" />
+        <attr name="np_background" format="reference|color" />
+        <attr name="np_edgeColor" format="color" />
+        <attr name="np_centerColor" format="color" />
         <attr name="np_textColor" format="color" />
         <attr name="np_slots" format="integer" />
         <attr name="np_reading" format="string" />

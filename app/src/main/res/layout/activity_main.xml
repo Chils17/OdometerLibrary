@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:chils="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:chils="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="20dp"
     android:orientation="vertical">
 
     <com.androidchils.odometer.Odometer
         android:id="@+id/odometer"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        chils:np_background="@color/color_transparent"
-        chils:np_backgroundColor="@drawable/gradient"
+        android:layout_height="wrap_content"
+        chils:np_centerColor="@android:color/black"
+        chils:np_edgeColor="@android:color/white"
         chils:np_font="@string/lato_regular"
         chils:np_reading="0000"
         chils:np_slots="4"
@@ -21,38 +21,38 @@
     <com.androidchils.odometer.Odometer
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        chils:np_background="@color/color_transparent"
-        chils:np_backgroundColor="@android:color/holo_red_dark"
+        android:layout_height="wrap_content"
+        chils:np_centerColor="@android:color/darker_gray"
+        chils:np_edgeColor="@android:color/background_dark"
         chils:np_font="@string/lato_regular"
         chils:np_reading="00000"
         chils:np_slots="5"
         chils:np_textColor="@color/white"
-        chils:np_textSize="17sp" />
+        chils:np_textSize="18sp" />
 
     <com.androidchils.odometer.Odometer
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        chils:np_background="@color/color_transparent"
-        chils:np_backgroundColor="@android:color/darker_gray"
-        chils:np_font="@string/lato_black"
+        android:layout_height="wrap_content"
+        chils:np_centerColor="@android:color/holo_purple"
+        chils:np_edgeColor="@android:color/white"
+        chils:np_font="@string/lato_regular"
         chils:np_reading="000"
         chils:np_slots="3"
-        chils:np_textColor="@color/colorPrimary"
-        chils:np_textSize="16sp" />
+        chils:np_textColor="@color/colorPrimaryDark"
+        chils:np_textSize="18sp" />
 
     <com.androidchils.odometer.Odometer
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        chils:np_background="@color/color_transparent"
-        chils:np_backgroundColor="@android:color/holo_blue_light"
+        android:layout_height="wrap_content"
+        chils:np_centerColor="@android:color/holo_blue_light"
+        chils:np_edgeColor="@android:color/darker_gray"
         chils:np_font="@string/lato_regular"
         chils:np_reading="00"
         chils:np_slots="2"
         chils:np_textColor="@color/white"
-        chils:np_textSize="19sp" />
+        chils:np_textSize="18sp" />
 
     <TextView
         android:id="@+id/tvOutPut"
@@ -61,8 +61,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:textColor="@color/black"
-        android:visibility="gone"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/btn_submit"
@@ -71,9 +71,18 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@color/black"
-        android:visibility="gone"
         android:text="Submit"
         android:textColor="@color/white"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
 </LinearLayout>

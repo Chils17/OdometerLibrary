@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -31,16 +32,15 @@ public class Odometer extends LinearLayout {
 
     private LinearLayout llParent;
     private int slot;
-    private int odo_bg_color;
-    private int odo_bg_color2 = -1;
-    private int bg_color;
     private int odo_text_color;
     private float textSize;
     private String read, fontName;
-    private String odo_bg_color3;
+    private int odo_edge_color;
+    private int odo_center_color;
 
-    public Odometer(Context context) {
+    public Odometer(Context context, Builder builder) {
         super(context);
+        initViews(context, builder);
     }
 
     public Odometer(Context context, @Nullable AttributeSet attrs) {
@@ -53,8 +53,17 @@ public class Odometer extends LinearLayout {
         initViews(context, attrs);
     }
 
-    private void initViews(Context context, AttributeSet attrs)
-    {
+    private void initViews(Context context, Builder builder) {
+        setOrientation(HORIZONTAL);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.number_picker, this, true);
+
+        llParent = (LinearLayout) findViewById(R.id.llParent);
+
+        createNumberPicker(context, builder);
+    }
+
+    private void initViews(Context context, AttributeSet attrs) {
 
         setOrientation(HORIZONTAL);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -69,26 +78,17 @@ public class Odometer extends LinearLayout {
 
             textSize = typedArray.getDimension(R.styleable.Odometer_np_textSize, spToPx(18f));
 
-            bg_color = typedArray.getColor(R.styleable.Odometer_np_background, ContextCompat.getColor(context, R.color.color_transparent));
-
-            /*background = typedArray.getResourceId(R.styleable.Odometer_main_background, R.drawable.gradient);
-            background2 = typedArray.getColor(R.styleable.Odometer_main_background, ContextCompat.getColor(context, R.color.black));
-            background1 = typedArray.getString(R.styleable.Odometer_main_background);*/
-
-            odo_bg_color = typedArray.getResourceId(R.styleable.Odometer_np_backgroundColor, R.drawable.gradient);
-            //odo_bg_color2 = typedArray.getColor(R.styleable.Odometer_odo_bg_color, ContextCompat.getColor(context, R.color.black));
-            odo_bg_color3 = typedArray.getString(R.styleable.Odometer_np_backgroundColor);
-
             odo_text_color = typedArray.getColor(R.styleable.Odometer_np_textColor, ContextCompat.getColor(context, R.color.white));
+
             slot = typedArray.getInt(R.styleable.Odometer_np_slots, 6);
             read = typedArray.getString(R.styleable.Odometer_np_reading);
+
+            odo_edge_color = typedArray.getResourceId(R.styleable.Odometer_np_edgeColor, 0);
+            odo_center_color = typedArray.getResourceId(R.styleable.Odometer_np_centerColor, 0);
 
         } finally {
             typedArray.recycle();
         }
-
-        llParent.setBackgroundColor(bg_color);
-
 
         if (TextUtils.isEmpty(fontName)) {
             fontName = "Lato-Regular.ttf";
@@ -113,22 +113,15 @@ public class Odometer extends LinearLayout {
             createDynamicNumberPicker(context);
         }
 
-        /*final int N = array.getIndexCount();
-        for (int i = 0; i < N; ++i) {
-            int attr = array.getIndex(i);
-            switch (attr) {
-                case R.styleable.Odometer_slots:
-                    slot = array.getInt(attr, 0);
-                    setNumberPicker(context);
-                    break;
+    }
 
-                case R.styleable.Odometer_reading:
-                    read = array.getString(attr);
-                    setReading(context);
-                    break;
-            }
-        }*/
-
+    private GradientDrawable makeGradientDrawable(GradientDrawable.Orientation orientation,
+                                                  int startColor, int centerColor, int endColor) {
+        int[] colors = new int[]{startColor, centerColor, endColor};
+        GradientDrawable gd = new GradientDrawable(orientation, colors);
+        gd.setCornerRadius(8);
+        gd.setGradientRadius(90);
+        return gd;
     }
 
     private float spToPx(float sp) {
@@ -139,8 +132,8 @@ public class Odometer extends LinearLayout {
 
         for (int i = 1; i <= slot; i++) {
             NumberPicker numberPicker = new NumberPicker(context);
-            LayoutParams lp = new LayoutParams(120, LayoutParams.WRAP_CONTENT);
-            lp.setMargins(4, 0, 4, 0);
+            LayoutParams lp = new LayoutParams(90, LayoutParams.WRAP_CONTENT);
+            lp.setMargins(2, 0, 2, 0);
             lp.gravity = Gravity.CENTER;
             numberPicker.setLayoutParams(lp);
 
@@ -148,15 +141,10 @@ public class Odometer extends LinearLayout {
 
             setNumberPickerTextColor(numberPicker, odo_text_color, fontName, textSize);
 
-           /* if (!TextUtils.isEmpty(odo_bg_color3)) {
-                numberPicker.setBackgroundColor(Color.parseColor(odo_bg_color3));
-            } else if (odo_bg_color != null) {
-                numberPicker.setBackgroundDrawable(odo_bg_color);
-            } else if (odo_bg_color2 == -1) {
-                numberPicker.setBackgroundColor(odo_bg_color2);
-            }*/
-
-            numberPicker.setBackgroundResource(odo_bg_color);
+            numberPicker.setBackgroundDrawable(makeGradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
+                    ContextCompat.getColor(context, odo_edge_color),
+                    ContextCompat.getColor(context, odo_center_color),
+                    ContextCompat.getColor(context, odo_edge_color)));
 
             numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
             numberPicker.setId(i - 1);
@@ -173,6 +161,39 @@ public class Odometer extends LinearLayout {
 
     }
 
+
+    private void createNumberPicker(Context context, Builder builder) {
+
+        for (int i = 1; i <= builder.slot; i++) {
+            NumberPicker numberPicker = new NumberPicker(context);
+            LayoutParams lp = new LayoutParams(90, LayoutParams.WRAP_CONTENT);
+            lp.setMargins(2, 0, 2, 0);
+            lp.gravity = Gravity.CENTER;
+            numberPicker.setLayoutParams(lp);
+
+            setDividerColor(numberPicker, Color.TRANSPARENT);
+
+            setNumberPickerTextColor(numberPicker, builder.odo_text_color, builder.font, spToPx(builder.textSize));
+
+            numberPicker.setBackgroundDrawable(makeGradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
+                    builder.odo_edge_color, builder.odo_center_color, builder.odo_edge_color));
+
+            numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+            numberPicker.setId(i - 1);
+            numberPicker.setMinValue(0);
+            numberPicker.setMaxValue(9);
+
+            numberPicker.setWrapSelectorWheel(true);
+
+            int read_val = Character.getNumericValue(builder.reading.charAt(i - 1));
+            numberPicker.setValue(read_val);
+
+            llParent.addView(numberPicker);
+            Log.e("add", "add" + i);
+        }
+
+    }
+
     public void setNumberPickerTextColor(NumberPicker numberPicker, int color, String fontName, float textSize) {
         final int count = numberPicker.getChildCount();
         for (int i = 0; i < count; i++) {
@@ -182,10 +203,17 @@ public class Odometer extends LinearLayout {
                     Field selectorWheelPaintField = numberPicker.getClass().getDeclaredField("mSelectorWheelPaint");
                     selectorWheelPaintField.setAccessible(true);
                     ((Paint) selectorWheelPaintField.get(numberPicker)).setColor(color);
-                    ((Paint) selectorWheelPaintField.get(numberPicker)).setTypeface(Typeface.createFromAsset(getResources().getAssets(), fontName));
+
+                    if (!TextUtils.isEmpty(fontName))
+                        ((Paint) selectorWheelPaintField.get(numberPicker)).setTypeface(Typeface.createFromAsset(getResources().getAssets(), fontName));
+
                     ((Paint) selectorWheelPaintField.get(numberPicker)).setTextSize(textSize);
+
                     ((EditText) child).setTextColor(color);
-                    ((EditText) child).setTypeface(Typeface.createFromAsset(getResources().getAssets(), fontName));
+
+                    if (!TextUtils.isEmpty(fontName))
+                        ((EditText) child).setTypeface(Typeface.createFromAsset(getResources().getAssets(), fontName));
+
                     ((EditText) child).setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
 
                     numberPicker.invalidate();
@@ -200,7 +228,7 @@ public class Odometer extends LinearLayout {
         }
     }
 
-    private void setDividerColor(NumberPicker picker, int color) {
+    public void setDividerColor(NumberPicker picker, int color) {
 
         Field[] pickerFields = NumberPicker.class.getDeclaredFields();
         for (Field pf : pickerFields) {
@@ -222,10 +250,8 @@ public class Odometer extends LinearLayout {
     }
 
 
-    public String getFinalOdoMiterValue() {
-
+    public String getFinalOdometerValue() {
         StringBuilder stringBuilder = new StringBuilder();
-
         for (int i = 0; i < llParent.getChildCount(); i++) {
 
             NumberPicker localNumberPicker = (NumberPicker) llParent.getChildAt(i);
@@ -233,10 +259,77 @@ public class Odometer extends LinearLayout {
 
             stringBuilder.append(localNumberPicker.getValue());
             stringBuilder.append(" ");
-
         }
-
         return stringBuilder.toString();
     }
+
+
+    public static class Builder {
+        // default values
+        private Context context;
+        private String font = "";
+        private float textSize = 0;
+        private int odo_text_color = 0;
+        private int odo_edge_color = 0;
+        private int odo_center_color = 0;
+        private int slot;
+        private String reading;
+
+
+        public Builder(Context context) {
+            this.context = context;
+            odo_text_color = ContextCompat.getColor(context, R.color.white);
+            odo_edge_color = ContextCompat.getColor(context, R.color.startColor);
+            odo_center_color = ContextCompat.getColor(context, R.color.centerColor);
+            textSize = spToPx(14);
+            slot = 4;
+            reading = "0000";
+        }
+
+        public Builder background(int odo_edge_color, int odo_center_color) {
+            this.odo_edge_color = odo_edge_color;
+            this.odo_center_color = odo_center_color;
+            return this;
+        }
+
+
+        public Builder textColor(int odo_text_color) {
+            this.odo_text_color = odo_text_color;
+            return this;
+        }
+
+
+        public Builder font(String font) {
+            this.font = font;
+            return this;
+        }
+
+        public Builder textSize(float textSize) {
+            this.textSize = textSize;
+            return this;
+        }
+
+        public Builder slot(int slot) {
+            this.slot = slot;
+            return this;
+        }
+
+        public Builder reading(String reading) {
+            this.reading = reading;
+            return this;
+        }
+
+
+        public Odometer build() {
+            return new Odometer(context, this);
+        }
+
+
+        private float spToPx(float sp) {
+            return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
+        }
+
+    }
+
 
 }
