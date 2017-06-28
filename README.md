@@ -29,7 +29,7 @@ repositories {
 - Add this to your app build.gradle:
 ~~~
 dependencies {
-    compile 'com.github.Chils17:OdometerLibrary:0dac320887'
+    compile 'com.github.Chils17:OdometerLibrary:215ddd9100'
 }
 ~~~
 

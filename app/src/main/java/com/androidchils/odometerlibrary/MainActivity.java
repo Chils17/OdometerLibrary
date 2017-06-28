@@ -27,16 +27,6 @@ public class MainActivity extends AppCompatActivity {
         tvOutPut = (TextView) findViewById(R.id.tvOutPut);
         btn_submit = (Button) findViewById(R.id.btn_submit);
 
-        Odometer odometer = new Odometer.Builder(this)
-                .background(ContextCompat.getColor(this, R.color.white), ContextCompat.getColor(this, R.color.black))
-                .font(getString(R.string.lato_regular))
-                .reading("1234")
-                .slot(4)
-                .textColor(ContextCompat.getColor(this, R.color.white))
-                .textSize(18)
-                .build();
-        ((LinearLayout) findViewById(R.id.linear)).addView(odometer);
-
         Odometer odo = new Odometer.Builder(this)
                 .textSize(18)
                 .textColor(ContextCompat.getColor(this, R.color.white))
