@@ -19,9 +19,9 @@
         chils:np_textSize="18sp" />
 
     <com.androidchils.odometer.Odometer
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         chils:np_centerColor="@android:color/darker_gray"
         chils:np_edgeColor="@android:color/background_dark"
         chils:np_font="@string/lato_regular"
@@ -31,9 +31,9 @@
         chils:np_textSize="18sp" />
 
     <com.androidchils.odometer.Odometer
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         chils:np_centerColor="@android:color/holo_purple"
         chils:np_edgeColor="@android:color/white"
         chils:np_font="@string/lato_regular"
@@ -42,17 +42,17 @@
         chils:np_textColor="@color/colorPrimaryDark"
         chils:np_textSize="18sp" />
 
-    <com.androidchils.odometer.Odometer
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        chils:np_centerColor="@android:color/holo_blue_light"
-        chils:np_edgeColor="@android:color/darker_gray"
-        chils:np_font="@string/lato_regular"
-        chils:np_reading="00"
-        chils:np_slots="2"
-        chils:np_textColor="@color/white"
-        chils:np_textSize="18sp" />
+      <com.androidchils.odometer.Odometer
+          android:layout_marginTop="15dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          chils:np_centerColor="@android:color/holo_blue_light"
+          chils:np_edgeColor="@android:color/darker_gray"
+          chils:np_font="@string/lato_regular"
+          chils:np_reading="00"
+          chils:np_slots="2"
+          chils:np_textColor="@color/white"
+          chils:np_textSize="18sp" />
 
     <TextView
         android:id="@+id/tvOutPut"

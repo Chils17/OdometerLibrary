@@ -15,6 +15,7 @@ Example is available in app module.
 </p>
 
 
+<!-- 
 ## Download
 
 ### Gradle dependency:
@@ -32,6 +33,7 @@ dependencies {
     compile 'com.github.Chils17:OdometerLibrary:215ddd9100'
 }
 ~~~
+ -->
 
 
 ## Usage
@@ -117,7 +119,7 @@ Its necessary to add odometer in the layout.
 ~~~
 
 
-- Add Customize Color <br>`.background(int odo_edge_color, int odo_center_color`
+- Add Customize Color <br>`.background(int odo_edge_color, int odo_center_color)`
 ~~~ 
       Odometer odometer=new Odometer.Builder(this)
                      .background(ContextCompat.getColor(this, R.color.white), ContextCompat.getColor(this, R.color.black))

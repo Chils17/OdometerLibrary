@@ -83,8 +83,8 @@ public class Odometer extends LinearLayout {
             slot = typedArray.getInt(R.styleable.Odometer_np_slots, 6);
             read = typedArray.getString(R.styleable.Odometer_np_reading);
 
-            odo_edge_color = typedArray.getResourceId(R.styleable.Odometer_np_edgeColor, 0);
-            odo_center_color = typedArray.getResourceId(R.styleable.Odometer_np_centerColor, 0);
+            odo_edge_color = typedArray.getResourceId(R.styleable.Odometer_np_edgeColor, R.color.white);
+            odo_center_color = typedArray.getResourceId(R.styleable.Odometer_np_centerColor, R.color.black);
 
         } finally {
             typedArray.recycle();
@@ -141,10 +141,12 @@ public class Odometer extends LinearLayout {
 
             setNumberPickerTextColor(numberPicker, odo_text_color, fontName, textSize);
 
-            numberPicker.setBackgroundDrawable(makeGradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
-                    ContextCompat.getColor(context, odo_edge_color),
-                    ContextCompat.getColor(context, odo_center_color),
-                    ContextCompat.getColor(context, odo_edge_color)));
+            if (odo_edge_color!=0 && odo_center_color!=0) {
+                numberPicker.setBackgroundDrawable(makeGradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
+                        ContextCompat.getColor(context, odo_edge_color),
+                        ContextCompat.getColor(context, odo_center_color),
+                        ContextCompat.getColor(context, odo_edge_color)));
+            }
 
             numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
             numberPicker.setId(i - 1);
