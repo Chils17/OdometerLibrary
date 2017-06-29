@@ -15,7 +15,7 @@ Example is available in app module.
 </p>
 
 
-<!-- 
+
 ## Download
 
 ### Gradle dependency:
@@ -30,10 +30,10 @@ repositories {
 - Add this to your app build.gradle:
 ~~~
 dependencies {
-    compile 'com.github.Chils17:OdometerLibrary:215ddd9100'
+    compile 'com.github.Chils17:OdometerLibrary:687d5ac1e9'
 }
 ~~~
- -->
+
 
 
 ## Usage
